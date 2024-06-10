@@ -12,7 +12,7 @@ local args = {
     "ip" = ip
 }
 
-local querystring = url.."?scriptid="..scriptid.."&scriptkey".."&hwid="..hwid.."&ip="..ip
+local querystring = "?scriptid="..scriptid.."&scriptkey".."&hwid="..hwid.."&ip="..ip
 local function makeRequest()
     local finalUrl = url..querystring
 
