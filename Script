@@ -2,8 +2,6 @@
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
-local scriptid = "1234"
-local scriptkey = "aIfx4kQN9z"
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 local ip = game:HttpGet("https://api64.ipify.org") 
 local url = "api.lualist.adjumpnow.lol/execute"
