@@ -1,6 +1,5 @@
 local scriptid = nil
 local scriptkey = nil
-local success, scriptCode = pcall(game.HttpGet, game, scriptUrl)
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
