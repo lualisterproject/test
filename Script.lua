@@ -1,20 +1,15 @@
-
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
-local ip = game:HttpGet("https://api64.ipify.org") 
+local ip = game:HttpGet("https://api64.ipify.org")
 local url = "https://api.lualist.adjumpnow.lol/execute"
-local args = {
-    "scriptid" = scriptid,
-    "scriptkey" = scriptkey,
-    "hwid" = hwid,
-    "ip" = ip
-}
 
-local querystring = "?scriptid="..scriptid.."&scriptkey=".."&hwid="..hwid.."&ip="..ip
+local querystring = "?scriptid=" .. scriptid .. "&scriptkey=" .. scriptkey .. "&hwid=" .. hwid .. "&ip=" .. ip
+
 local function makeRequest()
-    local finalUrl = url..querystring
+    print("makeRequest called")
+    local finalUrl = url .. querystring
+    print("Final URL: " .. finalUrl)
 
     local response
     local success, errorMessage = pcall(function()
@@ -28,8 +23,8 @@ local function makeRequest()
                 Url = finalUrl,
                 Method = "GET"
             })
-        elseif http and http.request then
-            response = http.request({
+        elseif http_request then
+            response = http_request({
                 Url = finalUrl,
                 Method = "GET"
             })
@@ -48,12 +43,16 @@ local function makeRequest()
             print("Response Data: ", responseData)
             lualistpremium()
         elseif response.StatusCode == 402 then
+            print("Key not valid")
             player:Kick("Key not valid")
         elseif response.StatusCode == 400 then
+            print("Error occurred with testing")
             player:Kick("Error occurred with testing")
         elseif response.StatusCode == 401 then
+            print("Key linked to different HWID, for using the script, use /resethwid")
             player:Kick("Key linked to different HWID, for using the script, use /resethwid")
         else
+            print("An error has occurred")
             player:Kick("An error has occurred")
         end
     else
@@ -62,10 +61,12 @@ local function makeRequest()
     end
 end
 
-makeRequest()
-
 function lualistpremium()
+    print("Whitelisted - Kicking player")
     local playerscr = game:GetService("Players").LocalPlayer
-
-playerscr:Kick("Whitelisted")
+    playerscr:Kick("Whitelisted")
 end
+
+print("Calling makeRequest")
+makeRequest()
+print("makeRequest finished")
