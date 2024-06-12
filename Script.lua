@@ -1,5 +1,3 @@
-local scriptid = nil
-local scriptkey = nil
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
